@@ -1,17 +1,39 @@
-.style-produto{
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin: 30px auto;
-    max-width: 1300px;
-    
+.style-produto {
+  /* background-color: aqua; */
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* padding-left: 2rem; */
+  align-items: center;
+  margin: 2rem auto;
+  max-width: 1300px;
+}
 
-    div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        
-    }
+@media (max-width: 790px) {
+  .style-produto {
+    padding-left: 0;
+  }
+
+  .navbar-collapse {
+    position: absolute;
+    top: 56px; /* altura do navbar */
+    left: 0;
+    width: 100%;
+    background-color: #212529; /* fundo escuro para tema dark */
+    z-index: 1000;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .navbar-collapse .nav-link {
+    color: #fff;
+  }
+
+  .navbar-collapse .dropdown-menu {
+    position: static; /* importante para dropdown funcionar dentro do collapse */
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+  }
 }

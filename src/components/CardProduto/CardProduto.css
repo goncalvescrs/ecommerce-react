@@ -1,113 +1,88 @@
+.container-card {
+  display: flex;
+  justify-content: center;
+  /* background-color: #ffff; */
+  border: 1px solid rgb(232, 232, 232);
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
 
 .card {
-        
-  width: 220px;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 0;
-  background-color: #ffff;
-  position: relative;
-  padding: 10px;
-  border: 1px solid rgb(232, 232, 232);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  width: 230px;
+  /* padding: 10px; */
   color: #1d1d1d;
 }
 
-.card a {
-  display: block;
-  width: 100%;
-  height: 100%;
+.linkCard {
   text-decoration: none;
-  color: red;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;   
-  &:hover {
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.283); 
-      border-radius: 10px;
-  }
-}
-
-.infCard h2,
-.infCard h4,
-.infCard p,
-.infCard h5,
-.infCard h6 {
-  text-decoration: none; /* Remover sublinhado */
-}
-
-.card a:hover {
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.283);
-  border-radius: 10px;
 }
 
 .imagemCard {
-  width: 100%;
-  height: 150px;
-  border-radius: 10px 10px 0 0;
-  overflow: hidden;
-}
-
-.imagemCard img {
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px 10px 0 0;
-}
-
-.infCard {
-  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  margin-top: 1rem;
+  img {
+    height: 100%;
+  }
 }
 
-.infCard span {
-  flex-direction: column;
+.infCard {
+  width: 100%;
+  display: flex;
+  padding: 10px;
+}
+
+.infos {
+  width: 100%;
+}
+
+.likes {
+  display: flex;
   align-items: center;
-}
-
-.infCard h2 {
-  font-size: 15px;
-  font-weight: 300;
-  margin-bottom: 10px;
-}
-
-.infCard h4 {
-  font-size: 20px;
-  font-weight: 250;
-  margin-bottom: 10px;
-}
-
-.infCard p {
   font-size: 12px;
-  color: green;
-  margin-bottom: 10px;
-}
-
-.infCard h5 {
-  font-size: 15px;
-  font-weight: 300;
-  color: green;
-  margin-bottom: 10px;
-}
-
-.infCard h6 {
-  font-size: 12px;
+  font-weight: 500;
   color: #000000;
-  padding-bottom: 10px;
 }
 
-.infCard .LiaShippingFastSolid {
-  font-size: 18px;
-  margin-left: 5px;
+.titulo {
+  font-size: 15px;
+  font-weight: 300;
+  color: #363636;
+  /* margin-bottom: 10px; */
 }
 
-.infCard .CiHeart {
-  font-size: 18px;
-  margin-right: 5px;
+.titulo:hover {
+  color: #9e0000;
+  text-decoration: underline;
+}
+
+.preco {
+  font-size: 16px;
+  font-weight: 250;
+  color: #9e0000;
+  margin-bottom: 10px;
+}
+
+.cartao {
+  font-size: 12px;
+  color: green;
+}
+
+.frete {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 300;
+  color: green;
+  gap: 5px;
+}
+
+@media (max-width: 576px) {
+  .card {
+    width: 100%;
+  }
 }

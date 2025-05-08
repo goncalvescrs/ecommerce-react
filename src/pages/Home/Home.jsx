@@ -6,6 +6,7 @@ import Footer from "../../components/Footer/Footer";
 import "./home.css";
 import CardProduto from "../../components/CardProduto/CardProduto";
 // import Buscar from "../../components/buscar/Buscar";
+import Paginacao from "../../components/paginacao/Paginacao";
 
 const Home = () => {
   const [produtos, setProdutos] = useState([]);
@@ -35,14 +36,14 @@ const Home = () => {
       <Cabecalho onSearch={setTermoDeBusca} />
 
       <div className="teste">
-        <div className="banner">
+        {/* <div className="banner">
           <Banner
             img={
               "https://tpc.googlesyndication.com/simgad/15464926730141309314?"
             }
             descrcao={"descricao do banner"}
           />
-        </div>
+        </div> */}
 
         <div className="style-produto">
           {produtosFiltrados.map((produto) => (
@@ -57,15 +58,7 @@ const Home = () => {
             />
           ))}
         </div>
-
-        <div className="banner">
-          <Banner
-            img={
-              "https://tpc.googlesyndication.com/simgad/10894917116371607010?"
-            }
-            descrcao={"descricao do banner"}
-          />
-        </div>
+        <Paginacao />
       </div>
       <Footer />
     </>

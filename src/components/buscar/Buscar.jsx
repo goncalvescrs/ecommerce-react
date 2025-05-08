@@ -10,7 +10,7 @@ const Buscar = ({ onSearch }) => {
   };
 
   return (
-    <div style={{ marginTop: "40px", textAlign: "center" }}>
+    <div style={{ textAlign: "center" }}>
       <input
         type="text"
         value={query}

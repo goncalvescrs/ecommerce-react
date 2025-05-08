@@ -54,7 +54,7 @@ const Categoria = () => {
   return (
     <>
       <Cabecalho onSearch={setTermoDeBusca} />
-      <h2 className="nome-categoria">Categoria {nomeCategoria}</h2>
+      <h2 className="nome-categoria">{nomeCategoria}</h2>
 
       <div className="style-produto">
         {produtosFiltrados
