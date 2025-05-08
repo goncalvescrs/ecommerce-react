@@ -1,79 +1,87 @@
-import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Cabecalho from "../../components/cabecalho/Cabecalho";
 import api from "../../api/api";
 import CardProduto from "../../components/CardProduto/CardProduto";
 import Footer from "../../components/Footer/Footer";
 import Banner from "../../components/Banner";
-import './categoria.css'
+import "./categoria.css";
 
 const Categoria = () => {
-    const { nomeCategoria } = useParams()
-    const [produtos, setProdutos] = useState([]);
+  const { nomeCategoria } = useParams();
+  const [produtos, setProdutos] = useState([]);
+  const [termoDeBusca, setTermoDeBusca] = useState("");
+  const [produtosFiltrados, setProdutosFiltrados] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  useEffect(() => {
+    fetchProdutos();
+  }, []);
 
-    useEffect(() => {
-        fetchProdutos()
-    }, [])
-
-    const fetchProdutos = async () => {
-        try {
-            const response = await api.get('/produto') 
-            console.log('Dados API:', response.data); // so pra ver se no console se ta vindo certo
-            setProdutos(response.data);
-        } catch (error) {
-            console.error('Erro ao buscar os produtos:', error);
-            setError(error.message);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    if (loading) {
-        return <p>Carregando...</p>;
+  const fetchProdutos = async () => {
+    try {
+      const response = await api.get("/produto");
+      setProdutos(response.data);
+    } catch (error) {
+      console.error("Erro ao buscar os produtos:", error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
     }
+  };
 
-    if (error) {
-        return <p>Erro: {error}</p>;
-    }
+  useEffect(() => {
+    const filtroProdutosDaCategoria = produtos.filter(
+      (produto) => produto.categoria === nomeCategoria
+    );
+    const filtrado = filtroProdutosDaCategoria.filter(
+      (produto) =>
+        produto.nome.toLowerCase().includes(termoDeBusca.toLowerCase()) &&
+        produto.quantidade > 0
+    );
+    setProdutosFiltrados(filtrado);
+  }, [termoDeBusca, produtos, nomeCategoria]);
 
-    // filtra os produtos pela categoria que vem dos parametros da URL
-    const produtosDaCategoria = produtos.filter((produto) => produto.categoria === nomeCategoria);
-    console.log('Produtos da categoria:', produtosDaCategoria); 
+  if (loading) {
+    return <p>Carregando...</p>;
+  }
 
-    return (
-        <>
-            <Cabecalho />
-            <h2 className="nome-categoria">Categoria {nomeCategoria}</h2>
+  if (error) {
+    return <p>Erro: {error}</p>;
+  }
 
-            <div className="style-produto">
-                {produtosDaCategoria
-                    .filter(produto => produto.quantidade > 0)
-                    .map((produto) =>
-                    <CardProduto
-                        key={produto.id}
-                        id={produto.id}
-                        nome={produto.nome}
-                        imgUrl={produto.imgUrl}
-                        descricao={produto.descricao}
-                        preco={produto.preco}
-                        likes={produto.likes}
-                    />
-                )}
-            </div>
+  return (
+    <>
+      <Cabecalho onSearch={setTermoDeBusca} />
+      <h2 className="nome-categoria">Categoria {nomeCategoria}</h2>
 
-            <div className="banner">
-                <Banner
-                    img={'https://tpc.googlesyndication.com/simgad/10894917116371607010?'}
-                    descrcao={"descricao do banner"}
-                />
-            </div>
+      <div className="style-produto">
+        {produtosFiltrados
+          .filter((produto) => produto.quantidade > 0)
+          .map((produto) => (
+            <CardProduto
+              key={produto.id}
+              id={produto.id}
+              nome={produto.nome}
+              imgUrl={produto.imgUrl}
+              descricao={produto.descricao}
+              preco={produto.preco}
+              likes={produto.likes}
+            />
+          ))}
+      </div>
 
-            <Footer />
-        </>
-    )
-}
+      <div className="banner">
+        <Banner
+          img={"https://tpc.googlesyndication.com/simgad/10894917116371607010?"}
+          descrcao={"descricao do banner"}
+        />
+      </div>
 
-export default Categoria
+      <Footer />
+    </>
+  );
+};
+
+export default Categoria;

@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import "./cabecalho.css";
 import { TiShoppingCart } from "react-icons/ti";
 import { getItem } from "../../services/LocalStorageFuncs";
+import Buscar from "../buscar/Buscar";
 
-const Cabecalho = () => {
+const Cabecalho = ({ onSearch }) => {
   const carrinho = getItem("carrinho");
 
   return (
@@ -25,7 +26,9 @@ const Cabecalho = () => {
             </li>
           </ul>
         </div>
-        
+
+        <Buscar onSearch={onSearch} />
+
         <div className="loginCadastro">
           <ul>
             <li>
