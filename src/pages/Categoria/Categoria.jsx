@@ -1,16 +1,17 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Cabecalho from "../../components/cabecalho/Cabecalho";
-import api from "../../api/api";
+import { api, getCategorias } from "../../service/api";
 import CardProduto from "../../components/CardProduto/CardProduto";
 import Footer from "../../components/Footer/Footer";
-import Banner from "../../components/Banner";
+import Banner from "../../components/banner/Banner";
 import "./categoria.css";
+import Loader from "../../components/loader/Loader";
 
 const Categoria = () => {
   const { nomeCategoria } = useParams();
   const [produtos, setProdutos] = useState([]);
-  const [termoDeBusca, setTermoDeBusca] = useState("");
+  // const [termoDeBusca, setTermoDeBusca] = useState("");
   const [produtosFiltrados, setProdutosFiltrados] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -21,7 +22,7 @@ const Categoria = () => {
 
   const fetchProdutos = async () => {
     try {
-      const response = await api.get("/produto");
+      const response = await api.get("/products");
       setProdutos(response.data);
     } catch (error) {
       console.error("Erro ao buscar os produtos:", error);
@@ -32,20 +33,15 @@ const Categoria = () => {
   };
 
   useEffect(() => {
-    const filtroProdutosDaCategoria = produtos.filter(
-      (produto) => produto.categoria === nomeCategoria
+    const filtroProdutosDaCategoria = produtos.filter((produto) =>
+      produto.categories?.some(
+        (categoria) =>
+          categoria.name?.toLowerCase().trim() ===
+          nomeCategoria.toLowerCase().trim()
+      )
     );
-    const filtrado = filtroProdutosDaCategoria.filter(
-      (produto) =>
-        produto.nome.toLowerCase().includes(termoDeBusca.toLowerCase()) &&
-        produto.quantidade > 0
-    );
-    setProdutosFiltrados(filtrado);
-  }, [termoDeBusca, produtos, nomeCategoria]);
-
-  if (loading) {
-    return <p>Carregando...</p>;
-  }
+    setProdutosFiltrados(filtroProdutosDaCategoria);
+  }, [produtos, nomeCategoria]);
 
   if (error) {
     return <p>Erro: {error}</p>;
@@ -53,23 +49,24 @@ const Categoria = () => {
 
   return (
     <>
-      <Cabecalho onSearch={setTermoDeBusca} />
+      <Cabecalho onSearch={" "} />
       <h2 className="nome-categoria">{nomeCategoria}</h2>
 
       <div className="style-produto">
-        {produtosFiltrados
-          .filter((produto) => produto.quantidade > 0)
-          .map((produto) => (
+        {loading ? (
+          <Loader />
+        ) : (
+          produtosFiltrados.map((produto) => (
             <CardProduto
               key={produto.id}
               id={produto.id}
-              nome={produto.nome}
+              nome={produto.name}
+              preco={produto.price}
               imgUrl={produto.imgUrl}
-              descricao={produto.descricao}
-              preco={produto.preco}
-              likes={produto.likes}
+              // quantidade={produto.quantidade}
             />
-          ))}
+          ))
+        )}
       </div>
 
       <div className="banner">

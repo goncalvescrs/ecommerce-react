@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import "./cabecalho.css";
 import { TiShoppingCart } from "react-icons/ti";
-import { getItem } from "../../services/LocalStorageFuncs";
+import { getItem } from "../../service/LocalStorageFuncs";
 import Buscar from "../buscar/Buscar";
+import { FaCarTunnel } from "react-icons/fa6";
+import { BiCart, BiUser } from "react-icons/bi";
 
 const Cabecalho = ({ onSearch }) => {
   const carrinho = getItem("carrinho");
@@ -35,20 +37,20 @@ const Cabecalho = ({ onSearch }) => {
               </a>
             </li> */}
             <li className="nav-item">
-              <a className="nav-link" href={"/categoria/mochila"}>
+              <Link className="nav-link" to={"/categoria/mochilas"}>
                 Mochilas
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href={"/categoria/eletronico"}>
+              <Link className="nav-link" to={"/categoria/eletronicos"}>
                 Eletronicos
-              </a>
+              </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <a className="nav-link disabled" aria-disabled="true">
                 Disabled
               </a>
-            </li>
+            </li> */}
           </ul>
           {/* ----------------- Search ----------------- */}
           {/* <Buscar onSearch={onSearch} /> */}
@@ -70,6 +72,16 @@ const Cabecalho = ({ onSearch }) => {
           </nav>
         </div>
         {/* ----------------- settings-------------- */}
+        <div className="cart">
+          <Link to={"/carrinho"}>
+            <BiCart
+              color="red"
+              fontSize={"28px"}
+              style={{ marginRight: "1rem" }}
+            />
+            {console.log(carrinho)}
+          </Link>
+        </div>
         <div className="dropdown">
           <button
             className="btn btn-secondary dropdown-toggle"
@@ -77,7 +89,7 @@ const Cabecalho = ({ onSearch }) => {
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Dropdown button
+            <BiUser size={"28px"} />
           </button>
           <ul className="dropdown-menu">
             <li>

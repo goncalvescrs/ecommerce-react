@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import api from "../../api/api";
+import { api } from "../../service/api";
 import Cabecalho from "../../components/cabecalho/Cabecalho";
-import { setItem, getItem } from "../../services/LocalStorageFuncs";
+import { setItem, getItem } from "../../service/LocalStorageFuncs";
 import "./produto.css";
 import Footer from "../../components/Footer/Footer";
 import { FaHeart } from "react-icons/fa";
-
-
 
 const ProdutoEspecifico = () => {
   const { id } = useParams();
@@ -23,16 +21,18 @@ const ProdutoEspecifico = () => {
   }, []);
 
   const getProduto = async () => {
-    const response = await api.get(`/produto/${id}`);
+    const response = await api.get(`/products/${id}`);
     setProduto(response.data);
   };
+  // console.log(produto);
 
   const handleLikeClick = async () => {
     const response = await api.patch(`/produto/${id}`, {
       likes: produto.likes + 1,
     });
-    window.location.reload();
+    // window.location.reload();
   };
+  // useEffect(() => {}, [produto.likes]);
 
   const handleClickCarrinho = (obj) => {
     const element = cart.find((e) => e.id == obj.id);
@@ -49,18 +49,19 @@ const ProdutoEspecifico = () => {
       <Cabecalho />
 
       <div className="produto">
-        <img src={produto.imgUrl} alt={produto.descricao} />
+        <img src={produto.imgUrl} alt={produto.description} />
         <div className="info">
-          <p>{produto.nome}</p>
-          <p>{produto.descricao}</p>
-          <h5>R$ {produto.preco}</h5>
+          <p>{produto.name}</p>
+          <p>{produto.description}</p>
+          <h5>R$ {produto.price}</h5>
           <h6>{produto.categoria}</h6>
           <h6>Estoque: {produto.quantidade}</h6>
           <button className="likes" onClick={handleLikeClick}>
-            <FaHeart/> Curtir ({produto.likes})
-          </button><br />
+            <FaHeart /> ({produto.likes})
+          </button>
+          <br />
           <button onClick={() => handleClickCarrinho(produto)}>
-                   Adicionar ao Carrinho
+            Adicionar ao Carrinho
           </button>
           <a href="/carrinho" onClick={() => handleClickCarrinho(produto)}>
             <button>Finalizar compra</button>

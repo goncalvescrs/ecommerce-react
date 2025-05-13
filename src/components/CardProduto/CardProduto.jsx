@@ -6,7 +6,7 @@ const CardProduto = ({ id, nome, imgUrl, descricao, preco, likes }) => {
   return (
     <span className="container-card">
       <a href={`/produto/${id}`} className="linkCard">
-        <div className="card">
+        <div className="card2">
           <div className="imagemCard">
             <img src={imgUrl} alt={descricao} />
           </div>
@@ -14,7 +14,7 @@ const CardProduto = ({ id, nome, imgUrl, descricao, preco, likes }) => {
             <span className="infos">
               <h2 className="titulo">{nome}</h2>
               <span className="likes">
-                <CiHeart fontSize={"16px"} /> {likes}
+                <CiHeart fontSize={"16px"} /> {}
               </span>
               <h3 className="preco">R$ {preco}</h3>
               <h4 className="cartao">No pix ou 12x no cartão</h4>

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import api from "../../api/api";
+import { api } from "../../service/api";
 import { useHistory } from "react-router-dom";
-import "./cadastro.css"
+import "./cadastro.css";
 
 const Cadastro = () => {
   const history = useHistory();
@@ -23,7 +23,7 @@ const Cadastro = () => {
       setName("");
       setEmail("");
       setPassword("");
-      alert('Usuário cadastrado com sucesso!')
+      alert("Usuário cadastrado com sucesso!");
       if (response.status === 201) {
         history.push("/Login");
       }
@@ -39,11 +39,11 @@ const Cadastro = () => {
           <h2 className="cadastro-form-title">Cadastro</h2>
           <div className="wrap-input">
             <input
-            required
+              required
               id="name"
               type="text"
               name="nome"
-              onChange={(e)=>setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
               className="input"
               value={name}
             />
@@ -51,11 +51,11 @@ const Cadastro = () => {
           </div>
           <div className="wrap-input">
             <input
-            required
+              required
               id="email"
               type="email"
               name="email"
-              onChange={(e)=> setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               className="input"
               value={email}
             />
@@ -63,11 +63,11 @@ const Cadastro = () => {
           </div>
           <div className="wrap-input">
             <input
-            required
+              required
               id="password"
               type="password"
               name="senha"
-              onChange={(e)=>setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               className="input"
               value={password}
             />
@@ -79,7 +79,11 @@ const Cadastro = () => {
             </button>
           </div>
           <div className="container-cadastro-form-btn">
-            <button type="submit" className="cadastro-form-btn" onClick={()=> history.push("/Login")}>
+            <button
+              type="submit"
+              className="cadastro-form-btn"
+              onClick={() => history.push("/Login")}
+            >
               Voltar
             </button>
           </div>
