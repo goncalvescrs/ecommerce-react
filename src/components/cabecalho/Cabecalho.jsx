@@ -5,9 +5,13 @@ import { getItem } from "../../service/LocalStorageFuncs";
 import Buscar from "../buscar/Buscar";
 import { FaCarTunnel } from "react-icons/fa6";
 import { BiCart, BiUser } from "react-icons/bi";
+import { useContext, useState } from "react";
+import { AppContext } from "../../context/AppContext";
 
-const Cabecalho = ({ onSearch }) => {
+const Cabecalho = () => {
   const carrinho = getItem("carrinho");
+  // const { termoDeBusca, setTermoDeBusca } = useContext(AppContext);
+  // console.log(termoDeBusca);
 
   return (
     <nav
@@ -53,9 +57,10 @@ const Cabecalho = ({ onSearch }) => {
             </li> */}
           </ul>
           {/* ----------------- Search ----------------- */}
-          {/* <Buscar onSearch={onSearch} /> */}
+          {/* <Buscar onSearch={setTermoDeBusca} /> */}
+          <Buscar />
 
-          <nav className="navbar bg-body-tertiary">
+          {/* <nav className="navbar bg-body-tertiary">
             <div className="container-fluid">
               <form className="d-flex" role="search">
                 <input
@@ -65,21 +70,21 @@ const Cabecalho = ({ onSearch }) => {
                   aria-label="Search"
                 />
                 <button className="btn btn-outline-success" type="submit">
-                  Search
+                  Buscar
                 </button>
               </form>
             </div>
-          </nav>
+          </nav> */}
         </div>
         {/* ----------------- settings-------------- */}
         <div className="cart">
           <Link to={"/carrinho"}>
+            {carrinho.length}
             <BiCart
               color="red"
               fontSize={"28px"}
               style={{ marginRight: "1rem" }}
             />
-            {console.log(carrinho)}
           </Link>
         </div>
         <div className="dropdown">

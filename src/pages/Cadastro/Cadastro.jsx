@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { api } from "../../service/api";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./cadastro.css";
 
 const Cadastro = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -25,7 +25,7 @@ const Cadastro = () => {
       setPassword("");
       alert("Usuário cadastrado com sucesso!");
       if (response.status === 201) {
-        history.push("/Login");
+        navigate("/Login");
       }
     } catch (error) {
       console.error("Erro ao cadastrar usuário:", error);
@@ -82,7 +82,7 @@ const Cadastro = () => {
             <button
               type="submit"
               className="cadastro-form-btn"
-              onClick={() => history.push("/Login")}
+              onClick={() => navigate("/Login")}
             >
               Voltar
             </button>

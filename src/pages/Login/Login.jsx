@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getItem, setItem } from "../../service/LocalStorageFuncs";
 import { api } from "../../service/api";
 import "./login.css";
 
 const Login = () => {
   const [login, setLogin] = useState({ email: "", senha: "" });
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setLogin({ ...login, [e.target.name]: e.target.value });
@@ -25,9 +25,9 @@ const Login = () => {
 
         const carrinho = getItem("carrinho") || [];
         if (!carrinho || carrinho.length === 0) {
-          history.push("/");
+          navigate("/");
         } else {
-          history.push("/carrinho");
+          navigate("/carrinho");
         }
       } else {
         alert("Usuário ou senha inválidos");

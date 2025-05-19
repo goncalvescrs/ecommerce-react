@@ -1,0 +1,15 @@
+.tituloResultado {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.banner {
+  padding: 1rem;
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+}

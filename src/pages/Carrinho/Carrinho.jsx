@@ -3,12 +3,12 @@ import { getItem, setItem } from "../../service/LocalStorageFuncs";
 import { CartArea, DivFinal } from "../../css/CartArea";
 import Cabecalho from "../../components/cabecalho/Cabecalho";
 import Rodape from "../../components/Footer/Footer";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { api } from "../../service/api";
 import "./carrinho.css";
 
 const Carrinho = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [data, setData] = useState(() => {
     const initialData = getItem("carrinho") || [];
     return initialData.map((e) => ({ ...e, qtdItens: e.qtdItens || 1 }));
@@ -74,7 +74,7 @@ const Carrinho = () => {
 
     if (!usuarioLogado) {
       alert("Você precisa estar logado para finalizar a compra.");
-      history.push("/login"); // Redirecionar para a página de login
+      navigate("/login"); // Redirecionar para a página de login
       return;
     }
 
@@ -95,7 +95,7 @@ const Carrinho = () => {
 
       // limpar o carrinho depois de finalizar a compra
       setData([]);
-      history.push("/compra-realizada");
+      navigate("/compra-realizada");
     } catch (error) {
       console.error("Erro ao criar pedido:", error);
     }

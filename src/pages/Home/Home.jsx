@@ -11,15 +11,12 @@ import { getProdutos } from "../../service/api";
 import Loader from "../../components/loader/Loader";
 
 const Home = () => {
+  // const [produtosFiltrados, setProdutosFiltrados] = useState([]);
+  // const [termoDeBusca, setTermoDeBusca] = useState("");
   const [produtos, setProdutos] = useState([]);
-  const [produtosFiltrados, setProdutosFiltrados] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [termoDeBusca, setTermoDeBusca] = useState("");
-  console.log("produtos no state: ", produtos);
-
-  useEffect(() => {
-    allProdutos();
-  }, []);
+  const [eletronicos, setEletronicos] = useState("");
+  const [mochilas, setMochilas] = useState("");
 
   const allProdutos = async () => {
     const response = await getProdutos();
@@ -28,18 +25,38 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const filtrado = produtos.filter(
-      (produto) =>
-        produto.name.toLowerCase().includes(termoDeBusca.toLowerCase())
-      // && produto.quantidade > 0
+    allProdutos();
+  }, []);
+
+  function secaoEletronicos() {
+    const filtroEletronicos = produtos.filter((produto) =>
+      produto.categories?.some((categoria) => categoria.name === "Eletronicos")
     );
-    setProdutosFiltrados(filtrado);
-  }, [termoDeBusca, produtos]);
-  console.log("filtrado", produtosFiltrados);
+    setEletronicos(filtroEletronicos);
+  }
+
+  function secaoMochilas() {
+    const filtroMochilas = produtos.filter((produto) =>
+      produto.categories?.some((categoria) => categoria.name === "Mochilas")
+    );
+    setMochilas(filtroMochilas);
+  }
+
+  useEffect(() => {
+    // const filtrado = produtos.filter(
+    //   (produto) =>
+    //     produto.name.toLowerCase().includes(termoDeBusca.toLowerCase())
+    //   // && produto.quantidade > 0
+    // );
+    // setProdutosFiltrados(filtrado);
+
+    secaoEletronicos();
+    secaoMochilas();
+  }, [produtos]);
 
   return (
     <>
-      <Cabecalho onSearch={setTermoDeBusca} />
+      <Cabecalho />
 
       <div className="teste">
         {/* <div className="banner">
@@ -50,12 +67,34 @@ const Home = () => {
             descrcao={"descricao do banner"}
           />
         </div> */}
-
+        <div style={{ width: "100%", paddingLeft: "2rem" }}>
+          <h3>Mochilas...</h3>
+          {/* <br /> */}
+        </div>
         <div className="style-produto">
           {loading ? (
             <Loader />
           ) : (
-            produtosFiltrados.map((produto) => (
+            mochilas.map((produto) => (
+              <CardProduto
+                key={produto.id}
+                id={produto.id}
+                nome={produto.name}
+                imgUrl={produto.imgUrl}
+                descricao={produto.description}
+                preco={produto.price}
+                // likes={produto.likes}
+              />
+            ))
+          )}
+          <div style={{ width: "100%", marginLeft: "2rem" }}>
+            <h3>Eletronicos...</h3>
+            <br />
+          </div>
+          {loading ? (
+            <Loader />
+          ) : (
+            eletronicos.map((produto) => (
               <CardProduto
                 key={produto.id}
                 id={produto.id}
