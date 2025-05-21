@@ -9,14 +9,17 @@ import CardProduto from "../../components/CardProduto/CardProduto";
 import Paginacao from "../../components/paginacao/Paginacao";
 import { getProdutos } from "../../service/api";
 import Loader from "../../components/loader/Loader";
+import Carrossel from "../../components/carrossel/Carrossel";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   // const [produtosFiltrados, setProdutosFiltrados] = useState([]);
   // const [termoDeBusca, setTermoDeBusca] = useState("");
   const [produtos, setProdutos] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [eletronicos, setEletronicos] = useState("");
-  const [mochilas, setMochilas] = useState("");
+  const [eletronicos, setEletronicos] = useState([]);
+  const [mochilas, setMochilas] = useState([]);
+  const navigate = useNavigate();
 
   const allProdutos = async () => {
     const response = await getProdutos();
@@ -54,24 +57,54 @@ const Home = () => {
     secaoMochilas();
   }, [produtos]);
 
+  console.log("eletronicos:", eletronicos);
+  console.log("tipo:", typeof eletronicos);
+
   return (
     <>
       <Cabecalho />
 
-      <div className="teste">
-        {/* <div className="banner">
-          <Banner
-            img={
-              "https://tpc.googlesyndication.com/simgad/15464926730141309314?"
-            }
-            descrcao={"descricao do banner"}
-          />
-        </div> */}
-        <div style={{ width: "100%", paddingLeft: "2rem" }}>
-          <h3>Mochilas...</h3>
-          {/* <br /> */}
-        </div>
-        <div className="style-produto">
+      {/* <div className="teste"> */}
+      {/* <div className="banner">
+        <Banner
+          img={
+            "https://www.americanas.com.br/_next/image?url=https%3A%2F%2Famericanas.vtexassets.com%2Fassets%2Fvtex.file-manager-graphql%2Fimages%2F7d402ecc-58c5-4c96-ba14-028aec3fd5ef___119e303f84358ebc9df94b209348b38d.png&w=1440&q=90"
+          }
+          descrcao={"descricao do banner"}
+        />
+      </div> */}
+      <div className="banner">
+        <Banner
+          img={"https://tpc.googlesyndication.com/simgad/15464926730141309314?"}
+          descrcao={"descricao do banner"}
+        />
+      </div>
+
+      <Carrossel
+        titulo={"Todos os produtos..."}
+        produtos={produtos}
+        destino={"/categoria/todos"}
+      />
+      <Carrossel
+        titulo={"Mochilas..."}
+        produtos={mochilas}
+        destino={"/categoria/eletronicos"}
+      />
+      <div className="banner">
+        <Banner
+          img={
+            "https://www.americanas.com.br/_next/image?url=https%3A%2F%2Famericanas.vtexassets.com%2Fassets%2Fvtex.file-manager-graphql%2Fimages%2F44223132-1f6f-470e-85de-f583a6d1e5d3___c6a6de46d83a19b46f33179776be68bd.png&w=1440&q=90"
+          }
+          descrcao={"descricao do banner"}
+        />
+      </div>
+      <Carrossel
+        titulo={"Eletronicos..."}
+        produtos={eletronicos}
+        destino={"/categoria/eletronicos"}
+      />
+
+      {/* <div className="style-produto">
           {loading ? (
             <Loader />
           ) : (
@@ -105,10 +138,10 @@ const Home = () => {
                 // likes={produto.likes}
               />
             ))
-          )}
-        </div>
-        <Paginacao />
-      </div>
+          )} */}
+      {/* </div> */}
+      {/* <Paginacao /> */}
+      {/* </div> */}
       <Footer />
     </>
   );

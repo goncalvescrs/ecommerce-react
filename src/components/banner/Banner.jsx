@@ -1,12 +1,10 @@
-
 const Banner = ({ img, descricao }) => {
-
-    return (
-        <>
-            <div>
-                <img src={img} alt={descricao} />
-            </div>
-        </>
-    )
-}
-export default Banner
+  return (
+    <>
+      <div style={{}}>
+        <img src={img} alt={descricao} />
+      </div>
+    </>
+  );
+};
+export default Banner;

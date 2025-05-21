@@ -7,15 +7,20 @@ const CardProduto = ({ id, nome, imgUrl, descricao, preco, likes }) => {
     <span className="container-card">
       <a href={`/produto/${id}`} className="linkCard">
         <div className="card2">
+          <div className="promo_like">
+            <div className="promo">
+              <h3>35% Off</h3>
+            </div>
+            <span className="like">
+              <CiHeart fontSize={"26px"} style={{ marginRight: ".5rem" }} /> {}
+            </span>
+          </div>
           <div className="imagemCard">
             <img src={imgUrl} alt={descricao} />
           </div>
           <div className="infCard">
             <span className="infos">
               <h2 className="titulo">{nome}</h2>
-              <span className="likes">
-                <CiHeart fontSize={"16px"} /> {}
-              </span>
               <h3 className="preco">R$ {preco}</h3>
               <h4 className="cartao">No pix ou 12x no cartão</h4>
               <span className="frete">

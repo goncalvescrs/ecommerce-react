@@ -1,15 +1,36 @@
 .container-card {
   display: flex;
   justify-content: center;
-  /* border: 1px solid rgb(232, 232, 232); */
-  /* border-radius: 10px; */
-  /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .card2 {
-  width: 230px;
-  background-color: #fff;
-  padding: 1rem 0;
+  width: 220px;
+  background-color: #ffffff;
+  padding-bottom: 1rem;
+  margin-inline: 0.5rem;
+  border: 1px solid rgb(232, 232, 232);
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.058);
+}
+
+.promo_like {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+}
+.promo {
+  /* display: none; */
+  padding-inline: 0.5rem;
+  background-color: rgba(0, 128, 0, 0);
+  width: 80px;
+  height: 30px;
+  /* padding: 20px; */
+  color: #fff;
+}
+
+.promo h3 {
+  font-size: 18px;
+  font-weight: 200;
 }
 
 .linkCard {
@@ -17,24 +38,22 @@
 }
 
 .imagemCard {
-  /* background-color: bisque; */
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   height: 150px;
   overflow: hidden;
-  margin-top: 1rem;
+  margin-block: 1rem;
   img {
     height: 100%;
   }
 }
 
 .infCard {
-  /* background-color: #9e0000; */
   width: 100%;
   display: flex;
-  padding: 10px;
+  padding: 0 10px;
 }
 
 .infos {
@@ -51,9 +70,9 @@
 
 .titulo {
   font-size: 15px;
-  font-weight: 300;
+  font-weight: 400;
   color: #363636;
-  /* margin-bottom: 10px; */
+  height: 30px;
 }
 
 .titulo:hover {
@@ -63,9 +82,9 @@
 
 .preco {
   font-size: 16px;
-  font-weight: 250;
-  color: #9e0000;
-  margin-bottom: 10px;
+  font-weight: 600;
+  color: #252525;
+  margin-bottom: 0.5rem;
 }
 
 .cartao {

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Cabecalho from "../../components/cabecalho/Cabecalho";
-import { api, getCategorias } from "../../service/api";
+import { api, getCategorias, getProdutos } from "../../service/api";
 import CardProduto from "../../components/CardProduto/CardProduto";
 import Footer from "../../components/Footer/Footer";
 import Banner from "../../components/banner/Banner";
@@ -10,7 +10,7 @@ import Loader from "../../components/loader/Loader";
 
 const Categoria = () => {
   const { nomeCategoria } = useParams();
-  const [produtos, setProdutos] = useState([]);
+  // const [produtos, setProdutos] = useState([]);
   // const [termoDeBusca, setTermoDeBusca] = useState("");
   const [produtosFiltrados, setProdutosFiltrados] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,12 +18,25 @@ const Categoria = () => {
 
   useEffect(() => {
     fetchProdutos();
-  }, []);
+  }, [nomeCategoria]);
 
   const fetchProdutos = async () => {
     try {
-      const response = await api.get("/products");
-      setProdutos(response.data);
+      const response = await getProdutos();
+      // setProdutos(response.data);
+      const produtos = response.data;
+      if (nomeCategoria === "todos") {
+        setProdutosFiltrados(produtos);
+      } else {
+        const filtroProdutosDaCategoria = produtos.filter((produto) =>
+          produto.categories?.some(
+            (categoria) =>
+              categoria.name?.toLowerCase().trim() ===
+              nomeCategoria.toLowerCase().trim()
+          )
+        );
+        setProdutosFiltrados(filtroProdutosDaCategoria);
+      }
     } catch (error) {
       console.error("Erro ao buscar os produtos:", error);
       setError(error.message);
@@ -32,16 +45,20 @@ const Categoria = () => {
     }
   };
 
-  useEffect(() => {
-    const filtroProdutosDaCategoria = produtos.filter((produto) =>
-      produto.categories?.some(
-        (categoria) =>
-          categoria.name?.toLowerCase().trim() ===
-          nomeCategoria.toLowerCase().trim()
-      )
-    );
-    setProdutosFiltrados(filtroProdutosDaCategoria);
-  }, [produtos, nomeCategoria]);
+  // useEffect(() => {
+  //   if (nomeCategoria === "todos") {
+  //     setProdutosFiltrados(produtos);
+  //   } else {
+  //     const filtroProdutosDaCategoria = produtos.filter((produto) =>
+  //       produto.categories?.some(
+  //         (categoria) =>
+  //           categoria.name?.toLowerCase().trim() ===
+  //           nomeCategoria.toLowerCase().trim()
+  //       )
+  //     );
+  //     setProdutosFiltrados(filtroProdutosDaCategoria);
+  //   }
+  // }, [produtos, nomeCategoria]);
 
   if (error) {
     return <p>Erro: {error}</p>;
@@ -49,7 +66,7 @@ const Categoria = () => {
 
   return (
     <>
-      <Cabecalho onSearch={" "} />
+      <Cabecalho />
       <h2 className="nome-categoria">{nomeCategoria}</h2>
 
       <div className="style-produto">

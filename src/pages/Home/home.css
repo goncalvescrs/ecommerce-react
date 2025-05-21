@@ -9,6 +9,11 @@
   max-width: 1300px;
 }
 
+.banner {
+  /* background-color: red; */
+  margin: auto;
+}
+
 @media (max-width: 790px) {
   .style-produto {
     padding-left: 0;
