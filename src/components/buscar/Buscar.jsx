@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 // import { AppContext } from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
+import "./buscar.css";
 
 const Buscar = () => {
   const [query, setQuery] = useState("");
@@ -27,19 +28,14 @@ const Buscar = () => {
   }
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div className="buscar_container">
       <input
         type="text"
         value={query}
         onChange={handleInputChange}
         onKeyDown={handleEnter}
-        placeholder="Buscar produtos..."
-        style={{
-          padding: "10px",
-          width: "300px",
-          borderRadius: "5px",
-          border: "1px solid #ccc",
-        }}
+        placeholder="Buscar produto..."
+        className="buscar_input"
       />
     </div>
   );

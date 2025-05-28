@@ -19,6 +19,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [eletronicos, setEletronicos] = useState([]);
   const [mochilas, setMochilas] = useState([]);
+  const [livros, setLivros] = useState([]);
   const navigate = useNavigate();
 
   const allProdutos = async () => {
@@ -44,6 +45,12 @@ const Home = () => {
     );
     setMochilas(filtroMochilas);
   }
+  function secaoLivros() {
+    const filtroLivros = produtos.filter((produto) =>
+      produto.categories?.some((categoria) => categoria.name === "Livros")
+    );
+    setLivros(filtroLivros);
+  }
 
   useEffect(() => {
     // const filtrado = produtos.filter(
@@ -55,6 +62,7 @@ const Home = () => {
 
     secaoEletronicos();
     secaoMochilas();
+    secaoLivros();
   }, [produtos]);
 
   console.log("eletronicos:", eletronicos);
@@ -86,9 +94,9 @@ const Home = () => {
         destino={"/categoria/todos"}
       />
       <Carrossel
-        titulo={"Mochilas..."}
-        produtos={mochilas}
-        destino={"/categoria/eletronicos"}
+        titulo={"Livros..."}
+        produtos={livros}
+        destino={"/categoria/livros"}
       />
       <div className="banner">
         <Banner

@@ -1,0 +1,10 @@
+.buscar_container {
+  text-align: center;
+}
+
+.buscar_input {
+  padding: 10px;
+  width: 90%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
