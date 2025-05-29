@@ -47,21 +47,20 @@ function Carrossel({ titulo, produtos, destino }) {
             </button>
           </div>
           <div className="carrossel_produtos" ref={carrossel}>
-            {!loading ? (
-              produtos.map((produto) => (
-                <CardProduto
-                  key={produto.id}
-                  id={produto.id}
-                  nome={produto.name}
-                  imgUrl={produto.imgUrl}
-                  descricao={produto.description}
-                  preco={produto.price}
-                  // likes={produto.likes}
-                />
-              ))
-            ) : (
-              <Loader />
-            )}
+            {/* {!loading ? ( */}
+            {produtos.map((produto) => (
+              <CardProduto
+                key={produto.id}
+                id={produto.id}
+                nome={produto.name}
+                imgUrl={produto.imgUrl}
+                descricao={produto.description}
+                preco={produto.price}
+                // likes={produto.likes}
+              />
+            ))}
+            {/*) : ( // <Loader /> */}
+            {/*)} */}
           </div>
           <div className="botao_direito">
             <button className="botao" onClick={handleClickDireito}>

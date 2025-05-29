@@ -7,6 +7,8 @@ import Footer from "../../components/Footer/Footer";
 import Banner from "../../components/banner/Banner";
 import "./categoria.css";
 import Loader from "../../components/loader/Loader";
+import Skeleton from "../../components/skeleton/Skeleton ";
+import SkeletonMenor from "../../components/skeletonMenor/SkeletonMenor ";
 
 const Categoria = () => {
   const { nomeCategoria } = useParams();
@@ -67,12 +69,13 @@ const Categoria = () => {
   return (
     <>
       <Cabecalho />
+      {/* {loading ? (
+        <Skeleton />
+      ) : (
+        <> */}
       <h2 className="nome-categoria">{nomeCategoria}</h2>
-
       <div className="style-produto">
         {loading ? (
-          <Loader />
-        ) : (
           produtosFiltrados.map((produto) => (
             <CardProduto
               key={produto.id}
@@ -83,6 +86,8 @@ const Categoria = () => {
               // quantidade={produto.quantidade}
             />
           ))
+        ) : (
+          <SkeletonMenor />
         )}
       </div>
 
@@ -92,6 +97,8 @@ const Categoria = () => {
           descrcao={"descricao do banner"}
         />
       </div>
+      {/* </> */}
+      {/* )} */}
 
       <Footer />
     </>

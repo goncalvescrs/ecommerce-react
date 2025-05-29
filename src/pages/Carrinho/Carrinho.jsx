@@ -158,51 +158,42 @@ const Carrinho = () => {
             <br />
           </>
         ) : (
-          data.map((e) => (
-            <div key={e.id}>
-              <img src={e.imgUrl} alt={e.description} />
-              <h4>{e.name}</h4>
-              <h5>R$ {e.price}</h5>
-              <span>
-                <label htmlFor={`quantidade-${e.id}`}>{"Quantidade: "}</label>
-                <input
-                  onClick={() => diminuir(e.id)}
-                  type="button"
-                  value=" - "
-                />
-                <input
-                  id={`quantidade-${e.id}`}
-                  name="quantidade"
-                  className="text"
-                  size="2"
-                  type="text"
-                  maxLength="5"
-                  value={e.qtdItens}
-                  readOnly
-                />
-                <input onClick={() => aumentar(e)} type="button" value=" + " />
-              </span>
-              <button onClick={() => removeItem(e)}>x</button>
+          <div className="container_cart">
+            <div className="container_produtos">
+              {data.map((e) => (
+                <div className="cart_produto" key={e.id}>
+                  <img src={e.imgUrl} alt={e.description} />
+                  <h4>{e.name}</h4>
+                  <button onClick={() => removeItem(e)}>Excluir</button>
+                  <div className="quantidade_produto">
+                    {/* <label htmlFor={`quantidade-${e.id}`} /> */}
+                    <button onClick={() => diminuir(e.id)}>
+                      <h6>-</h6>
+                    </button>
+                    <span>{e.qtdItens}</span>
+                    <button onClick={() => aumentar(e)}>
+                      <h6>+</h6>
+                    </button>
+                  </div>
+                  <h5>R$ {e.price}</h5>
+                </div>
+              ))}
             </div>
-          ))
+            {/* ---------------- */}
+            {/* <div className="container_finalizar"> */}
+            <div className="card_finalizar">
+              <h2>Resumo da Compra</h2>
+              ----------------------------------------------
+              <h3>{`Total: R$ ${subTotal.toFixed(2)}`}</h3>
+              <br />
+              <button className="botao_continuar" onClick={finalizarCompra}>
+                Continuar a Compra
+              </button>
+            </div>
+          </div>
+          // </div>
         )}
       </div>
-      {/* </CartArea> */}
-      {data.length > 0 && (
-        // <DivFinal>
-        <div className="div-final">
-          <div>
-            <h3>{`SubTotal: R$ ${subTotal.toFixed(2)}`}</h3>
-            <br />
-            <button onClick={finalizarCompra}>Finalizar Compra</button> <br />
-            <br />
-            <button style={{ background: "red" }} onClick={zerarCarrinho}>
-              Excluir carrinho
-            </button>
-          </div>
-        </div>
-        // </DivFinal>
-      )}
       <Rodape />
     </>
   );

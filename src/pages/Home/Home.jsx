@@ -11,6 +11,7 @@ import { getProdutos } from "../../service/api";
 import Loader from "../../components/loader/Loader";
 import Carrossel from "../../components/carrossel/Carrossel";
 import { useNavigate } from "react-router-dom";
+import Skeleton from "../../components/skeleton/Skeleton ";
 
 const Home = () => {
   // const [produtosFiltrados, setProdutosFiltrados] = useState([]);
@@ -81,75 +82,45 @@ const Home = () => {
           descrcao={"descricao do banner"}
         />
       </div> */}
-      <div className="banner">
-        <Banner
-          img={"https://tpc.googlesyndication.com/simgad/15464926730141309314?"}
-          descrcao={"descricao do banner"}
-        />
-      </div>
-
-      <Carrossel
-        titulo={"Todos os produtos..."}
-        produtos={produtos}
-        destino={"/categoria/todos"}
-      />
-      <Carrossel
-        titulo={"Livros..."}
-        produtos={livros}
-        destino={"/categoria/livros"}
-      />
-      <div className="banner">
-        <Banner
-          img={
-            "https://www.americanas.com.br/_next/image?url=https%3A%2F%2Famericanas.vtexassets.com%2Fassets%2Fvtex.file-manager-graphql%2Fimages%2F44223132-1f6f-470e-85de-f583a6d1e5d3___c6a6de46d83a19b46f33179776be68bd.png&w=1440&q=90"
-          }
-          descrcao={"descricao do banner"}
-        />
-      </div>
-      <Carrossel
-        titulo={"Eletronicos..."}
-        produtos={eletronicos}
-        destino={"/categoria/eletronicos"}
-      />
-
-      {/* <div className="style-produto">
-          {loading ? (
-            <Loader />
-          ) : (
-            mochilas.map((produto) => (
-              <CardProduto
-                key={produto.id}
-                id={produto.id}
-                nome={produto.name}
-                imgUrl={produto.imgUrl}
-                descricao={produto.description}
-                preco={produto.price}
-                // likes={produto.likes}
-              />
-            ))
-          )}
-          <div style={{ width: "100%", marginLeft: "2rem" }}>
-            <h3>Eletronicos...</h3>
-            <br />
+      {!loading ? (
+        <>
+          <div className="banner">
+            <Banner
+              img={
+                "https://tpc.googlesyndication.com/simgad/15464926730141309314?"
+              }
+              descrcao={"descricao do banner"}
+            />
           </div>
-          {loading ? (
-            <Loader />
-          ) : (
-            eletronicos.map((produto) => (
-              <CardProduto
-                key={produto.id}
-                id={produto.id}
-                nome={produto.name}
-                imgUrl={produto.imgUrl}
-                descricao={produto.description}
-                preco={produto.price}
-                // likes={produto.likes}
-              />
-            ))
-          )} */}
-      {/* </div> */}
-      {/* <Paginacao /> */}
-      {/* </div> */}
+
+          <Carrossel
+            titulo={"Todos os produtos..."}
+            produtos={produtos}
+            destino={"/categoria/todos"}
+          />
+          <Carrossel
+            titulo={"Livros..."}
+            produtos={livros}
+            destino={"/categoria/livros"}
+          />
+          <div className="banner">
+            <Banner
+              img={
+                "https://www.americanas.com.br/_next/image?url=https%3A%2F%2Famericanas.vtexassets.com%2Fassets%2Fvtex.file-manager-graphql%2Fimages%2F44223132-1f6f-470e-85de-f583a6d1e5d3___c6a6de46d83a19b46f33179776be68bd.png&w=1440&q=90"
+              }
+              descrcao={"descricao do banner"}
+            />
+          </div>
+          <Carrossel
+            titulo={"Eletronicos..."}
+            produtos={eletronicos}
+            destino={"/categoria/eletronicos"}
+          />
+        </>
+      ) : (
+        <Skeleton />
+      )}
+
       <Footer />
     </>
   );
