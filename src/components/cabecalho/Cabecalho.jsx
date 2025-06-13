@@ -11,8 +11,6 @@ import Logo from "../../assets/image/logo-ecommerce.png";
 
 const Cabecalho = () => {
   const carrinho = getItem("carrinho");
-  // const { termoDeBusca, setTermoDeBusca } = useContext(AppContext);
-  // console.log(termoDeBusca);
 
   return (
     <nav className="navbar navbar-expand-lg custom_navbar">
@@ -70,7 +68,7 @@ const Cabecalho = () => {
             <BiCart color="#FFF" fontSize={"35px"} />
           </div>
           <div className="quantidade_itens">
-            <span>{carrinho.length}</span>
+            <span>{carrinho?.length}</span>
           </div>
         </a>
 
