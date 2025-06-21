@@ -15,7 +15,10 @@ const Cabecalho = () => {
   return (
     <nav className="navbar navbar-expand-lg custom_navbar">
       <div className="container-fluid container">
-        <a className="logo navbar-brand" href={"http://localhost:5173"}>
+        <a
+          className="logo navbar-brand"
+          href={"https://loja.cristianogoncalves.tech/"}
+        >
           <img src={Logo} alt="" />
         </a>
         <button
