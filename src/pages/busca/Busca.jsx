@@ -17,9 +17,6 @@ const Busca = () => {
   const [searchParams] = useSearchParams();
   const termoDeBusca = searchParams.get("q") || "";
 
-  console.log("Termo: ", termoDeBusca);
-  console.log("Produtos com termo: ", produtosFiltrados);
-
   useEffect(() => {
     const fetchProdutos = async () => {
       try {

@@ -67,9 +67,11 @@ const Cabecalho = () => {
           <div className="icone_cart">
             <BiCart color="#FFF" fontSize={"35px"} />
           </div>
-          <div className="quantidade_itens">
-            <span>{carrinho?.length}</span>
-          </div>
+          {carrinho?.length > 0 ? (
+            <div className="quantidade_itens">
+              <span>{carrinho.length}</span>
+            </div>
+          ) : null}
         </a>
 
         {/* ------------- Usuario ------------ */}

@@ -66,22 +66,9 @@ const Home = () => {
     secaoLivros();
   }, [produtos]);
 
-  console.log("eletronicos:", eletronicos);
-  console.log("tipo:", typeof eletronicos);
-
   return (
     <>
       <Cabecalho />
-
-      {/* <div className="teste"> */}
-      {/* <div className="banner">
-        <Banner
-          img={
-            "https://www.americanas.com.br/_next/image?url=https%3A%2F%2Famericanas.vtexassets.com%2Fassets%2Fvtex.file-manager-graphql%2Fimages%2F7d402ecc-58c5-4c96-ba14-028aec3fd5ef___119e303f84358ebc9df94b209348b38d.png&w=1440&q=90"
-          }
-          descrcao={"descricao do banner"}
-        />
-      </div> */}
       {!loading ? (
         <>
           <div className="banner">

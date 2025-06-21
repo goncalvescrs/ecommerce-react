@@ -19,10 +19,6 @@ const Buscar = () => {
 
   function handleEnter(e) {
     if (e.key === "Enter") {
-      console.log("Enter: ", query);
-
-      // navigate("/busca");
-      // setTermoDeBusca(query);
       navigate(`/busca?q=${encodeURIComponent(termoDeBusca)}`);
     }
   }
