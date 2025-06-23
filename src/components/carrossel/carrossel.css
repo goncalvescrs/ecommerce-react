@@ -1,6 +1,7 @@
 .container_carrossel {
   display: flex;
   flex-direction: column;
+  margin-top: 2rem;
 }
 
 .titulo_container {

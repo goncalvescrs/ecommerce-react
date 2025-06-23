@@ -22,7 +22,7 @@ const AppRoutes = () => {
             path="/categoria/:nomeCategoria"
             element={<Categoria />}
           />
-          <Route exact path="/produto/:id" element={<Produto />} />
+          <Route exact path="/produto/:nome" element={<Produto />} />
           <Route exact path="/carrinho" element={<Carrinho />} />
           <Route exact path="/compra-realizada" element={<CompraRealizada />} />
         </Routes>

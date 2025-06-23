@@ -45,6 +45,7 @@
 .buscar {
   /* background-color: aqua; */
   width: 100%;
+  padding-right: 3rem;
 }
 
 .cart {
@@ -67,5 +68,10 @@
   color: #fff;
   font-weight: 700;
   text-align: center;
-  margin-left: -10px;
+  margin-left: -6px;
+}
+
+.itens a:active {
+  background-color: inherit;
+  color: inherit;
 }

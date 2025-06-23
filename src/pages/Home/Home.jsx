@@ -71,14 +71,14 @@ const Home = () => {
       <Cabecalho />
       {!loading ? (
         <>
-          <div className="banner">
+          {/* <div className="banner">
             <Banner
               img={
                 "https://tpc.googlesyndication.com/simgad/15464926730141309314?"
               }
               descrcao={"descricao do banner"}
             />
-          </div>
+          </div> */}
 
           <Carrossel
             titulo={"Todos os produtos..."}
@@ -90,14 +90,14 @@ const Home = () => {
             produtos={livros}
             destino={"/categoria/livros"}
           />
-          <div className="banner">
+          {/* <div className="banner">
             <Banner
               img={
                 "https://www.americanas.com.br/_next/image?url=https%3A%2F%2Famericanas.vtexassets.com%2Fassets%2Fvtex.file-manager-graphql%2Fimages%2F44223132-1f6f-470e-85de-f583a6d1e5d3___c6a6de46d83a19b46f33179776be68bd.png&w=1440&q=90"
               }
               descrcao={"descricao do banner"}
             />
-          </div>
+          </div> */}
           <Carrossel
             titulo={"Eletronicos..."}
             produtos={eletronicos}

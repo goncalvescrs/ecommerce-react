@@ -69,36 +69,35 @@ const Categoria = () => {
   return (
     <>
       <Cabecalho />
-      {/* {loading ? (
+      {loading ? (
         <Skeleton />
       ) : (
-        <> */}
-      <h2 className="nome-categoria">{nomeCategoria}</h2>
-      <div className="style-produto">
-        {loading ? (
-          produtosFiltrados.map((produto) => (
-            <CardProduto
-              key={produto.id}
-              id={produto.id}
-              nome={produto.name}
-              preco={produto.price}
-              imgUrl={produto.imgUrl}
-              // quantidade={produto.quantidade}
-            />
-          ))
-        ) : (
-          <SkeletonMenor />
-        )}
-      </div>
+        <>
+          <h2 className="nome-categoria">{nomeCategoria}</h2>
+          <div className="style-produto">
+            {/* {!loading ? ( */}
+            {produtosFiltrados.map((produto) => (
+              <CardProduto
+                key={produto.id}
+                id={produto.id}
+                nome={produto.name}
+                preco={produto.price}
+                imgUrl={produto.imgUrl}
+                // quantidade={produto.quantidade}
+              />
+            ))}
+          </div>
 
-      <div className="banner">
-        <Banner
-          img={"https://tpc.googlesyndication.com/simgad/10894917116371607010?"}
-          descrcao={"descricao do banner"}
-        />
-      </div>
-      {/* </> */}
-      {/* )} */}
+          <div className="banner">
+            <Banner
+              img={
+                "https://tpc.googlesyndication.com/simgad/10894917116371607010?"
+              }
+              descrcao={"descricao do banner"}
+            />
+          </div>
+        </>
+      )}
 
       <Footer />
     </>

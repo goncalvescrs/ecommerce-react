@@ -15,10 +15,7 @@ const Cabecalho = () => {
   return (
     <nav className="navbar navbar-expand-lg custom_navbar">
       <div className="container-fluid container">
-        <a
-          className="logo navbar-brand"
-          href={"https://loja.cristianogoncalves.tech/"}
-        >
+        <a className="logo navbar-brand" href={"/"}>
           <img src={Logo} alt="" />
         </a>
         <button
@@ -68,7 +65,7 @@ const Cabecalho = () => {
         {/* ----------------- carrinho-------------- */}
         <a className="cart" href="/carrinho">
           <div className="icone_cart">
-            <BiCart color="#FFF" fontSize={"35px"} />
+            <BiCart color="#FFF" fontSize={"28px"} />
           </div>
           {carrinho?.length > 0 ? (
             <div className="quantidade_itens">
@@ -84,23 +81,24 @@ const Cabecalho = () => {
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
+            style={{ backgroundColor: "#ffffff00", border: "none" }}
           >
-            <BiUser size={"28px"} />
+            <BiUser size={"22px"} />
           </button>
           <ul className="dropdown-menu">
-            <li>
+            <li className="itens">
               <a className="dropdown-item" href="#">
-                Action
+                Compras
               </a>
             </li>
-            <li>
+            <li className="itens">
               <a className="dropdown-item" href="#">
-                Another action
+                Configurações
               </a>
             </li>
-            <li>
+            <li className="itens">
               <a className="dropdown-item" href="#">
-                Something else here
+                Sair
               </a>
             </li>
           </ul>

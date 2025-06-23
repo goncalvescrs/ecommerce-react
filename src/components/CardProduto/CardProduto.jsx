@@ -5,7 +5,7 @@ import "./CardProduto.css";
 const CardProduto = ({ id, nome, imgUrl, descricao, preco, likes }) => {
   return (
     <span className="container-card">
-      <a href={`/produto/${id}`} className="linkCard">
+      <a href={`/produto/${nome}`} className="linkCard">
         <div className="card2">
           <div className="promo_like">
             <div className="promo">
